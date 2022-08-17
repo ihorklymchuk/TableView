@@ -14,15 +14,17 @@ class ViewController: UITableViewController  {
 
     var itemArray = [Item]()
     
-    let defaults = UserDefaults.standard
+    var selectedCategory: Category? {
+        didSet {
+            loadItems()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
-        loadItems()
-
     }
     
     
@@ -30,13 +32,14 @@ class ViewController: UITableViewController  {
         
         var textField = UITextField()
         
-        let alert = UIAlertController(title: "Add Preferred Item", message: "Message here", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Add Preferred Item", message: "", preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
+        let action = UIAlertAction(title: "Add Item", style: .default) { [self] (action) in
             
             let newItem = Item(context: self.context)
             newItem.title = textField.text!
             newItem.done = false
+            newItem.toParentCategory = self.selectedCategory
             
             self.itemArray.append(newItem)
             
@@ -69,8 +72,16 @@ class ViewController: UITableViewController  {
     }
     
 
-    func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest()) {
-//        let request: NSFetchRequest<Item> = Item.fetchRequest()
+    func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest(), predicate: NSPredicate? = nil) {
+
+        let categoryPredicate = NSPredicate(format: "toParentCategory.name MATCHES %@", selectedCategory!.name!)
+        
+        if let additionalPredicate = predicate {
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, additionalPredicate])
+        } else {
+            request.predicate = categoryPredicate
+        }
+            
             do {
                 try itemArray = context.fetch(request)
             } catch {
@@ -81,7 +92,7 @@ class ViewController: UITableViewController  {
     
 
     
-    // MARK - TableView Datasource Methods
+    //MARK - TableView Datasource Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemArray.count
@@ -104,7 +115,7 @@ class ViewController: UITableViewController  {
     
     
     
-    // MARK - TableView Delegate Methods
+    //MARK - TableView Delegate Methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

@@ -14,6 +14,7 @@
 		3F8C925628A5099C0030B1C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F8C925528A5099C0030B1C3 /* Assets.xcassets */; };
 		3F8C925928A5099C0030B1C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F8C925728A5099C0030B1C3 /* LaunchScreen.storyboard */; };
 		3FF0C87628AB9E7500F7C6F9 /* ItemDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FF0C87428AB9E7500F7C6F9 /* ItemDataModel.xcdatamodeld */; };
+		3FF0C89B28AD1A7D00F7C6F9 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF0C89A28AD1A7D00F7C6F9 /* CategoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		3F8C925828A5099C0030B1C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F8C925A28A5099C0030B1C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FF0C87528AB9E7500F7C6F9 /* ItemDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ItemDataModel.xcdatamodel; sourceTree = "<group>"; };
+		3FF0C89A28AD1A7D00F7C6F9 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				3F8C925028A5099B0030B1C3 /* ViewController.swift */,
+				3FF0C89A28AD1A7D00F7C6F9 /* CategoryViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FF0C89B28AD1A7D00F7C6F9 /* CategoryViewController.swift in Sources */,
 				3F8C925128A5099B0030B1C3 /* ViewController.swift in Sources */,
 				3F8C924D28A5099B0030B1C3 /* AppDelegate.swift in Sources */,
 				3FF0C87628AB9E7500F7C6F9 /* ItemDataModel.xcdatamodeld in Sources */,
