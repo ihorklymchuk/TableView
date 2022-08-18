@@ -6,13 +6,13 @@
 //
 
 import UIKit
-import CoreData
+import RealmSwift
 
 class ViewController: UITableViewController  {
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let realm = try! Realm()
 
-    var itemArray = [Item]()
+    var todoItemsArray: Results<Item>?
     
     var selectedCategory: Category? {
         didSet {
@@ -36,14 +36,16 @@ class ViewController: UITableViewController  {
         
         let action = UIAlertAction(title: "Add Item", style: .default) { [self] (action) in
             
-            let newItem = Item(context: self.context)
-            newItem.title = textField.text!
-            newItem.done = false
-            newItem.toParentCategory = self.selectedCategory
-            
-            self.itemArray.append(newItem)
-            
-            self.saveItems()
+            if let currentCategory = self.selectedCategory {
+                do {
+                    try self.realm.write {
+                    let newItem = Item()
+                    newItem.title = textField.text!
+                    currentCategory.items.append(newItem)
+                }} catch {
+                    print("Error saving the item: \(error)")
+                }
+            }
             
             self.tableView.reloadData()
         }
@@ -60,33 +62,11 @@ class ViewController: UITableViewController  {
     
     
     // MARK - Model Manipulation Mathods
-    
-    func saveItems() {
-        do {
-            try context.save()
-        } catch {
-            print("Error encoding item array: \(error)")
-        }
-        
-        tableView.reloadData()
-    }
-    
 
-    func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest(), predicate: NSPredicate? = nil) {
-
-        let categoryPredicate = NSPredicate(format: "toParentCategory.name MATCHES %@", selectedCategory!.name!)
+    func loadItems() {
         
-        if let additionalPredicate = predicate {
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, additionalPredicate])
-        } else {
-            request.predicate = categoryPredicate
-        }
-            
-            do {
-                try itemArray = context.fetch(request)
-            } catch {
-                print("Error reading data in item array: \(error)")
-            }
+        todoItemsArray = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
+
         tableView.reloadData()
         }
     
@@ -95,7 +75,7 @@ class ViewController: UITableViewController  {
     //MARK - TableView Datasource Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemArray.count
+        return todoItemsArray?.count ?? 1
     }
 
     
@@ -103,11 +83,13 @@ class ViewController: UITableViewController  {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellIdentifier", for: indexPath)
         
-        let item = itemArray[indexPath.row]
-        
-        cell.textLabel?.text = item.title
-        
-        cell.accessoryType = item.done ? .checkmark : .none
+        if let item = todoItemsArray?[indexPath.row] {
+            cell.textLabel?.text = item.title
+            
+            cell.accessoryType = item.done ? .checkmark : .none
+        } else {
+            cell.textLabel?.text = "No items added"
+        }
         
         return cell
     }
@@ -119,9 +101,15 @@ class ViewController: UITableViewController  {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        itemArray[indexPath.row].done = !itemArray[indexPath.row].done
-        
-        self.saveItems()
+        if let item = todoItemsArray?[indexPath.row] {
+            do {
+                try realm.write {
+                    item.done = !item.done
+                }
+            } catch {
+                print("Error while updating: \(error)")
+            }
+        }
         
         tableView.reloadData()
         
@@ -135,26 +123,26 @@ class ViewController: UITableViewController  {
     
     //MARK: Search Bar Methods
     
-    extension ViewController: UISearchBarDelegate {
-     
-        
-        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-            
-            let request: NSFetchRequest<Item> = Item.fetchRequest()
-            
-            request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
-            
-            request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-            
-            loadItems(with: request)
-        }
-        
-        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            if searchBar.text?.count == 0 {
-                loadItems()
-                DispatchQueue.main.async {
-                    searchBar.resignFirstResponder()
-                }
-            }
-        }
-    }
+//    extension ViewController: UISearchBarDelegate {
+//     
+//        
+//        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//            
+//            let request: NSFetchRequest<Item> = Item.fetchRequest()
+//            
+//            request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+//            
+//            request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+//            
+//            loadItems(with: request)
+//        }
+//        
+//        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//            if searchBar.text?.count == 0 {
+//                loadItems()
+//                DispatchQueue.main.async {
+//                    searchBar.resignFirstResponder()
+//                }
+//            }
+//        }
+//    }
