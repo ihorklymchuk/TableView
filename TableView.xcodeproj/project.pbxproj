@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F17BB4A28AFB54F004793AD /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3F17BB4928AFB54F004793AD /* SwipeCellKit */; };
 		3F56C4F528AD5F2B00555E03 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 3F56C4F428AD5F2B00555E03 /* Realm */; };
 		3F56C4F728AD5F2B00555E03 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3F56C4F628AD5F2B00555E03 /* RealmSwift */; };
 		3F56C4F928AD6A2D00555E03 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F56C4F828AD6A2D00555E03 /* Category.swift */; };
@@ -21,7 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3F56C4F228AD5E5B00555E03 /* TableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = TableView.app; path = "/Users/ihorklymchuk/Desktop/Bootcamp/TableView/build/Debug-iphoneos/TableView.app"; sourceTree = "<absolute>"; };
+		3F17BB4728AE72C4004793AD /* TableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F56C4F828AD6A2D00555E03 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		3F56C4FA28AD6A7C00555E03 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		3F8C924C28A5099B0030B1C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +41,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F56C4F728AD5F2B00555E03 /* RealmSwift in Frameworks */,
+				3F17BB4A28AFB54F004793AD /* SwipeCellKit in Frameworks */,
 				3F56C4F528AD5F2B00555E03 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -51,6 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				3F8C924B28A5099B0030B1C3 /* TableView */,
+				3F17BB4728AE72C4004793AD /* TableView.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,9 +125,10 @@
 			packageProductDependencies = (
 				3F56C4F428AD5F2B00555E03 /* Realm */,
 				3F56C4F628AD5F2B00555E03 /* RealmSwift */,
+				3F17BB4928AFB54F004793AD /* SwipeCellKit */,
 			);
 			productName = TableView;
-			productReference = 3F56C4F228AD5E5B00555E03 /* TableView.app */;
+			productReference = 3F17BB4728AE72C4004793AD /* TableView.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -153,6 +157,7 @@
 			mainGroup = 3F8C924028A5099B0030B1C3;
 			packageReferences = (
 				3F56C4F328AD5F2B00555E03 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				3F17BB4828AFB54F004793AD /* XCRemoteSwiftPackageReference "SwipeCellKit" */,
 			);
 			productRefGroup = 3F8C924028A5099B0030B1C3;
 			projectDirPath = "";
@@ -406,6 +411,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3F17BB4828AFB54F004793AD /* XCRemoteSwiftPackageReference "SwipeCellKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwipeCellKit/SwipeCellKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		3F56C4F328AD5F2B00555E03 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
@@ -417,6 +430,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3F17BB4928AFB54F004793AD /* SwipeCellKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F17BB4828AFB54F004793AD /* XCRemoteSwiftPackageReference "SwipeCellKit" */;
+			productName = SwipeCellKit;
+		};
 		3F56C4F428AD5F2B00555E03 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3F56C4F328AD5F2B00555E03 /* XCRemoteSwiftPackageReference "realm-swift" */;
