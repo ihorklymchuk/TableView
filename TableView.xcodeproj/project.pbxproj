@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3F17BB4A28AFB54F004793AD /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3F17BB4928AFB54F004793AD /* SwipeCellKit */; };
+		3F17BB4C28B3A47B004793AD /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F17BB4B28B3A47B004793AD /* SwipeTableViewController.swift */; };
 		3F56C4F528AD5F2B00555E03 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 3F56C4F428AD5F2B00555E03 /* Realm */; };
 		3F56C4F728AD5F2B00555E03 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3F56C4F628AD5F2B00555E03 /* RealmSwift */; };
 		3F56C4F928AD6A2D00555E03 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F56C4F828AD6A2D00555E03 /* Category.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		3F17BB4728AE72C4004793AD /* TableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F17BB4B28B3A47B004793AD /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		3F56C4F828AD6A2D00555E03 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		3F56C4FA28AD6A7C00555E03 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		3F8C924C28A5099B0030B1C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			children = (
 				3F8C925028A5099B0030B1C3 /* ViewController.swift */,
 				3FF0C89A28AD1A7D00F7C6F9 /* CategoryViewController.swift */,
+				3F17BB4B28B3A47B004793AD /* SwipeTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				3FF0C89B28AD1A7D00F7C6F9 /* CategoryViewController.swift in Sources */,
 				3F8C925128A5099B0030B1C3 /* ViewController.swift in Sources */,
 				3F8C924D28A5099B0030B1C3 /* AppDelegate.swift in Sources */,
+				3F17BB4C28B3A47B004793AD /* SwipeTableViewController.swift in Sources */,
 				3F56C4FB28AD6A7C00555E03 /* Item.swift in Sources */,
 				3F8C924F28A5099B0030B1C3 /* SceneDelegate.swift in Sources */,
 				3F56C4F928AD6A2D00555E03 /* Category.swift in Sources */,
